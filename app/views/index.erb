@@ -1,0 +1,23 @@
+  <form action="/add_task" method="post">
+    <p>Task name:</p>
+    <input type="text" name="title">
+    <br>
+    <br>
+    <p>Details:</p>
+    <textarea name="content" cols="25" rows="5"></textarea>
+    <br>
+    <br>
+    <input type="submit" value="add task">
+  </form>
+
+  <% @all_tasks.each do |task| %>
+    <p><em><%= task.title %></em></p>
+    <p><%= task.content %></p>
+    <form action="/<%= task.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete">
+    </form>
+    <form action="/<%= task.id %>/update" method="get">
+      <input type="submit" value="update">
+    </form>
+  <% end %>
